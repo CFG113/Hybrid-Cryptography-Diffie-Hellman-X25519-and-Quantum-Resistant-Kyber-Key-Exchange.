@@ -10,7 +10,7 @@ pipeline {
 
         stage('Test') {
             steps {
-                error 'Forcing a failure to test email'
+                echo 'Test App'
             }
         }
 
@@ -25,12 +25,13 @@ pipeline {
         always {
             emailext(
                 to: 'christianghantous1@gmail.com',
-                subject: "Pipeline ${currentBuild.fullDisplayName} finished with status: ${currentBuild.currentResult}",
+                subject: "Jenkins Pipeline Status: ${currentBuild.fullDisplayName}",
                 body: """
-                    Build Status: ${currentBuild.currentResult}
-                    Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' completed.
-                    Full details: ${env.BUILD_URL}
+                    <p>Build Status: ${currentBuild.currentResult}</p>
+                    <p>Job '${env.JOB_NAME} [${env.BUILD_NUMBER}]' has completed.</p>
+                    <p>Check the console output here: ${env.BUILD_URL}</p>
                 """,
+                mimeType: 'text/html',
                 attachLog: true
             )
         }
