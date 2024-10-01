@@ -23,7 +23,7 @@ pipeline {
 
     post {
         always {
-            emailext body: 'Summary', subject: 'Pipeline Status', to: 'christianghantous1@gmail.com'
+            emailext body: 'Jenkins', subject: 'Pipeline Status', to: 'christianghantous1@gmail.com'
         }
     }
 }
