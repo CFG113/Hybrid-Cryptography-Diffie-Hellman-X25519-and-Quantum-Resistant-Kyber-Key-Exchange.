@@ -25,10 +25,4 @@ pipeline {
             }
         }
     }
-
-    post {
-        always {
-            emailext body: '${BUILD_STATUS}: The Jenkins Pipeline has finished successfully.', subject: 'Pipeline Status', to: 'christianghantous1@gmail.com'
-        }
-    }
 }
